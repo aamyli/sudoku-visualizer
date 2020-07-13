@@ -1,8 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 html {
     height: 100%;
+    background-color: #212121;
 }
 
+#header, #subheader, #options {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#options {
+    margin-top: 40px;
+}
+
+h1 {
+    font-size: 70px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+b {
+    color: yellow;
+}
 
 body {
     font-family: "Lato", sans-serif;
@@ -11,6 +33,40 @@ body {
 table {
     border: 10px solid black;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    
+}
+
+button {
+    border-radius: 15px;
+    border: 2px solid white;
+    padding: 7px 20px;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+}
+
+button:hover {
+    opacity: 80%;
+}
+
+#clear {
+    background-color: rgb(255, 115, 0);
+    margin-bottom: 40px;
+}
+
+#fill {
+    background-color: rgb(241, 227, 23);
+}
+
+#create {
+    background-color: rgb(255, 217, 0);
+}
+
+#solve {
+    background-color: rgb(255, 196, 0);
 }
 
 td {
@@ -27,7 +83,11 @@ td {
 }
 
 td.discovered-num {
-    color: red !important;
+    background-color: rgb(199, 255, 199);
+}
+
+td.discovered-wrong-num {
+    background-color: rgb(255, 173, 173);
 }
 
 td.box-boundary-row {

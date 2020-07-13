@@ -1,6 +1,7 @@
-<p>board works!</p>
+<div id="header"><h1>SUDOKU <b>VISUALIZER</b></h1></div>
+<div id="subheader"><button id="clear" (click)="clear()">RESET</button></div>
 <table id="sudoku-board"></table>
-<button (click)="clear()">Make Board</button>
-<button (click)="fillBoard()">Fill Board</button>
-<button (click)="createSudoku(40)">Create Sudoku</button>
-<button (click)="solveSudoku()">Solve</button>
+<div id="options">
+<button (click)="fillBoard()" id="fill">1. FILL</button>
+<button (click)="createSudoku(40)" id="create">2. CREATE</button>
+<button (click)="solveSudoku()" id="solve">3. SOLVE</button></div>

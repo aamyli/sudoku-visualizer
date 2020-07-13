@@ -34,10 +34,12 @@ export class BoardComponent implements OnInit {
   clear() {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        this.board[i][j] == 0;
+        this.board[i][j] = 0;
+        console.log(this.board[i][j]);
         this.renderCell(`cell-${i}-${j}`, '');
       }
     }
+    console.table(this.board);
   }
 
   renderSudoku() {
@@ -75,13 +77,23 @@ export class BoardComponent implements OnInit {
 
   renderCell(cellId, value) {
     let cell = document.getElementById(cellId);
+    cell.classList.remove('discovered-wrong-num');
+    cell.classList.remove('discovered-num');
     cell.classList.add('given-num');
     cell.textContent = value;
   }
 
   renderSolveCell(cellId, value) {
     let cell = document.getElementById(cellId);
+    cell.classList.remove('discovered-wrong-num');
     cell.classList.add('discovered-num');
+    cell.textContent = value;
+  }
+
+  renderWrongSolveCell(cellId, value) {
+    let cell = document.getElementById(cellId);
+    cell.classList.remove('discovered-num');
+    cell.classList.add('discovered-wrong-num');
     cell.textContent = value;
   }
 
@@ -186,7 +198,6 @@ export class BoardComponent implements OnInit {
     }
 
      oneSolution() {
-        console.log("one solution");
         var copyA = new Array();
         for (let a = 0; a < 9; a++) {
           copyA[a] = new Array(9);
@@ -201,25 +212,18 @@ export class BoardComponent implements OnInit {
       }
 
       copyBoard(copy:number[][]) {
-        console.log("copyboard");
-        console.log(this.board[0][0]);
         for (let a = 0; a < 9; a++) {
-          console.log("for loop");
           for (let b = 0; b < 9; b++) {
-            console.log("here");
             copy[a][b] = this.board[a][b];
           }
         }
       }
 
      sudokuSolver(board:number[][], boardSize:number) {
-       console.log("solver");
         var row:number, col:number;
         var isEmpty = true;
-        console.log("solver2");
         for (let i = 0; i < boardSize; i++) {
           for (let j = 0; j < boardSize; j++) {
-            console.log("in for");
             if (board[i][j] == 0) {
               row = i;
               col = j;
@@ -239,9 +243,7 @@ export class BoardComponent implements OnInit {
           potentialAnswer <= boardSize;
           potentialAnswer++
         ) {
-          console.log("before verify");
           if (this.verifySolution(potentialAnswer, row, col)) {
-            console.log("verify solution");
             board[row][col] = potentialAnswer;
             if (this.sudokuSolver(board, boardSize)) {
               return true;
@@ -258,7 +260,6 @@ export class BoardComponent implements OnInit {
          var isEmpty = true;
          for (let i = 0; i < 9; i++) {
            for (let j = 0; j < 9; j++) {
-             console.log("in for");
              if (this.board[i][j] == 0) {
                row = i;
                col = j;
@@ -283,7 +284,7 @@ export class BoardComponent implements OnInit {
               } 
               else {
                 this.board[row][col] = 0;
-                this.renderSolveCell(`cell-${row}-${col}`, '');
+                this.renderWrongSolveCell(`cell-${row}-${col}`, '');
                 await UtilFuncs.sleep(this.speed);
               }
            }
