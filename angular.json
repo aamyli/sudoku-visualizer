@@ -117,8 +117,13 @@
               "devServerTarget": "sudoku-visualizer:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "sudoku-visualizer"
 }
